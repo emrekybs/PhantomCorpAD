@@ -2,10 +2,6 @@
 
 A single-server, deterministic **vulnerable Active Directory** lab for hands-on offensive-security training and exams. One Windows Server 2016 Domain Controller is seeded with ~40 realistic attack paths — from anonymous enumeration all the way to Domain Admin and persistence.
 
-> **Deterministic build (seed 1337):** every student who imports the OVA — or runs the script — gets the **exact same users, passwords, groups and attack paths**. No randomness between machines.
-
-**Design by Emre Koybaşı**
-
 ---
 
 ## What's in the box
