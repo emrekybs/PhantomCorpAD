@@ -1,0 +1,21 @@
+# VM appliances & split archives — NEVER in the repo (GitHub 100MB limit)
+*.ova
+*.vdi
+*.vmdk
+*.vhdx
+*.vhd
+*.zip
+*.z[0-9][0-9]
+*.z[0-9]
+
+# zip/split temp files (random names)
+zi[a-zA-Z0-9]*
+
+# Build artifacts that contain passwords
+generate.log
+VulnAD_Lab_Report.txt
+VulnAD-Build/
+
+# OS noise
+.DS_Store
+Thumbs.db
