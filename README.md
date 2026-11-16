@@ -138,11 +138,6 @@ Notes:
   # upload the .zip / .z01 / .z02 ... as Release assets, then:
   # zip -s 0 Phantom2016_lab.zip --out joined.zip && unzip joined.zip
   ```
-- **External host** (Google Drive / Mega / your own server) and put the link here.
-
-*(Edit this section with your actual download link.)*
-
----
 
 ## Credentials / answer key
 
