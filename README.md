@@ -78,18 +78,11 @@ Full exploit commands for every item are in the **answer keys**.
 
 ---
 
-## Option A — Import the prebuilt VM (fastest)
-
-1. Download the OVA (see **Download the OVA** below).
-2. VirtualBox → **File → Import Appliance** → select the `.ova`.
-3. Boot it. Host-only / internal network recommended. Attack from a Kali VM on the same network.
-4. **Take a snapshot before you start** — Zerologon resets the DC machine password.
-
 Everything is already built; just attack.
 
 ---
 
-## Option B — Build it yourself (PowerShell)
+## Build it yourself (PowerShell)
 
 On a **clean** Windows Server 2016, in an **elevated 64-bit PowerShell** (not the x86 one), in order:
 
@@ -122,17 +115,7 @@ Notes:
 
 ---
 
-## Download the OVA
 
-> GitHub limits regular files to 100 MB and release assets to 2 GB, so a multi-GB OVA does **not** fit in the repo directly. Pick one:
-
-- **Split archive on a GitHub Release** (if under ~2 GB per part):
-  ```bash
-  # split into 1900 MB parts
-  zip -s 1900m Phantom2016_lab.zip ovafile/Phantom2016_lab.ova
-  # upload the .zip / .z01 / .z02 ... as Release assets, then:
-  # zip -s 0 Phantom2016_lab.zip --out joined.zip && unzip joined.zip
-  ```
 
 ## Credentials / answer key
 
