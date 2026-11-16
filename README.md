@@ -9,7 +9,6 @@ A single-server, deterministic **vulnerable Active Directory** lab for hands-on 
 - `PhantomCorp.ps1` — the build script (run once on a fresh DC)
 - `Phantom_AD_Answer_Key.html` — instructor answer key & attack-path map (English)
 - `Phantom_AD_Answer_Key_TR.html` — same, in Turkish
-- `ovafile/` — the prebuilt, ready-to-import VM appliance (see **Download the OVA** below)
 
 ---
 
