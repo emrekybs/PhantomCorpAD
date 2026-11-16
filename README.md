@@ -79,6 +79,7 @@ Full exploit commands for every item are in the **answer keys**.
 ---
 
 Everything is already built; just attack.
+## Administrator Password: Cyberlabs2026!
 
 ---
 
