@@ -122,13 +122,8 @@ Notes:
 Exploit walkthroughs and the planted-credential reference are in:
 - `Phantom_AD_Answer_Key.html` (English)
 - `Phantom_AD_Answer_Key_TR.html` (Türkçe)
-
-The exact randomized identities for a given build are in `generate.log` / `VulnAD_Lab_Report.txt` (written to `C:\VulnAD-Build` during the build).
-
 ---
 
-## Disclaimer
 
-For **authorized training, education and CTF use only**, on systems you own or are permitted to test. The author accepts no liability for misuse. Do not connect this VM to a production or internet-facing network.
 
 **Design by Emre Koybaşı**
